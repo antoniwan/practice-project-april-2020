@@ -5,9 +5,9 @@ const messageSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  user: { type: moongose.Schema.Types.ObjectId, ref: "User" },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
-const Message = moongose.model("Message", messageSchema);
+const Message = mongoose.model("Message", messageSchema);
 
 export default Message;

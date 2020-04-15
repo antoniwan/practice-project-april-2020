@@ -23,6 +23,6 @@ userSchema.pre("remove", function (next) {
   this.model("Message").deleteMany({ user: this._id }, next);
 });
 
-const User = moongose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;

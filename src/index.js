@@ -1,11 +1,13 @@
 import "dotenv/config";
 import cors from "cors";
 import express from "express";
-import models from "./models";
+import models, { connectDb } from "./models";
 import routes from "./routes";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+const eraseDatabaseOnSync = true;
+
 app.use(cors());
 
 app.use(express.json());
@@ -24,6 +26,15 @@ app.use(`/session`, routes.session);
 app.use(`/users`, routes.user);
 app.use(`/messages`, routes.message);
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}!`);
+connectDb().then(async () => {
+  if (eraseDatabaseOnSync) {
+    await Promise.all([
+      models.User.deleteMany({}),
+      models.Message.deleteMany({}),
+    ]);
+  }
+
+  app.listen(PORT, () =>
+    console.log(`Example Node.js API app listening on port ${PORT}`)
+  );
 });
