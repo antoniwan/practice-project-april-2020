@@ -1,0 +1,3 @@
+# Node.js practice exercise
+
+For this Node.js REST API practice exercise I'm practicing and learning: Babel to use next-generation JavaScript, code organization, nodemon, mongoose, ORM, express, etccccc...
